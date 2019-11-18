@@ -14,7 +14,9 @@ WORKDIR /
 RUN git clone https://github.com/thtrieu/darkflow.git \
   && cd darkflow \
   && pip install .
+  
+RUN pip install py_eureka_client
 
 COPY . .
 
-CMD ["flask", "run"]
+CMD ["flask", "run", "--host", "0.0.0.0"]
