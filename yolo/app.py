@@ -7,6 +7,8 @@ import numpy as np
 from urllib.request import urlopen
 import py_eureka_client.eureka_client as eureka_client
 import logging
+from flask_cors import CORS
+import base64
 
 REST_SERVER_PORT = 5000
 
@@ -22,6 +24,7 @@ tfnet = TFNet(options)
 
 # Initialize the Flask application
 app = Flask(__name__)
+CORS(app)
 
 
 def image_to_byte_array(image: Image):
@@ -29,6 +32,12 @@ def image_to_byte_array(image: Image):
     image.save(imgByteArr, format='PNG')
     imgByteArr = imgByteArr.getvalue()
     return imgByteArr
+
+def image_to_base64(image: Image):	
+    buffered = io.BytesIO()	
+    image.save(buffered, format='JPEG')	
+    imgStr = base64.b64encode(buffered.getvalue())	
+    return imgStr
 
 
 # route http posts to this method
@@ -60,7 +69,8 @@ def yoloImage():
 
     print(type(img))
     np_img = Image.fromarray(img)
-    img_encoded = image_to_byte_array(np_img)
+    # img_encoded = image_to_byte_array(np_img)
+    img_encoded = image_to_base64(np_img)
     print(type(img_encoded))
 
     return Response(response=img_encoded, status=200, mimetype="image/jpeg")

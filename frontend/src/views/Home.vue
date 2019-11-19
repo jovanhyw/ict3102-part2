@@ -74,8 +74,8 @@ export default {
           //   String.fromCharCode(...new Uint8Array(rawResponse))
           // )
 
-          // this.responseImg = 'data:image/jpeg;base64,' + res.data
-          this.resJson = res.data
+          this.responseImg = 'data:image/jpeg;base64,' + res.data
+          // this.resJson = res.data
         })
         .catch(err => {
           this.submitBtnLoading = false
