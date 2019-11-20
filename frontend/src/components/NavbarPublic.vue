@@ -36,7 +36,7 @@ export default {
     return {
       tabs: [
         { text: 'Home', route: '/' },
-        { text: 'About', route: '/about' }
+        { text: 'Image Detection', route: '/image-detection' }
       ]
     }
   }
