@@ -12,7 +12,7 @@ import base64
 
 REST_SERVER_PORT = 5000
 
-eureka_client.init_registry_client(eureka_server="http://192.168.99.100:8761/eureka",
+eureka_client.init_registry_client(eureka_server="http://eureka:8761/eureka",
                                    app_name="3102-YOLO-SERVICE",
                                    instance_port=REST_SERVER_PORT)
 print("Registered")

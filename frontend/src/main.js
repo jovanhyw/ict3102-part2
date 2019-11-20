@@ -7,7 +7,8 @@ import ApiService from './services/api.service'
 
 Vue.config.productionTip = false
 
-ApiService.init('http://localhost:5000/api')
+// ApiService.init('http://localhost:5000/api')
+ApiService.init('http://localhost:8762/yolo/api')
 
 new Vue({
   router,

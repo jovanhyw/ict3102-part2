@@ -3,6 +3,26 @@ version: '3'
 
 # services
 services:
+  eureka:
+    build: ./3102_Eureka_Server
+    entrypoint:
+      - java
+      - -jar
+      - 3102_Eureka_server-0.0.1-SNAPSHOT.jar
+    ports:
+      - 8761:8761
+
+  zuul:
+    build: ./3102_Zuul_Server
+    entrypoint:
+      - java
+      - -jar
+      - 3102_Zuul_server-0.0.1-SNAPSHOT.jar
+    ports:
+      - 8762:8762
+    depends_on:
+      - eureka
+
   yolo:
     build: ./yolo
     entrypoint:
@@ -14,8 +34,12 @@ services:
       FLASK_APP: /app.py
     ports:
       - '5000-5002:5000'
+    depends_on:
+      - eureka
 
   frontend:
     build: ./frontend
     ports:
       - 80:80
+    depends_on:
+      - yolo
