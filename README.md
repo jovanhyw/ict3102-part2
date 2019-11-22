@@ -5,6 +5,9 @@
 ## 📝 Table of Contents
 
 - [About](#about)
+- [Key Features](#keyFeatures)
+- [Frontend](#frontend)
+- [Backend](#backend)
 - [Usage](#usage)
 - [Architecture](#architecture)
 
@@ -41,7 +44,7 @@ The system backend comprises of a Zuul server, Eureka server, and Flask server w
 
 Zuul is an edge service that provides dynamic routing and load balancing services. The system uses the base functionalities of Zuul mentioned above. Zuul and Spring have been selected as the platform as of choice due to their flexibility and ease of extensibility. Using Spring additional security layers and business logic layers can be built on top of Zuul to allow for more complex routing strategies. On boot, Zuul requests for a list of services and IPs that provided these services. Requests from the frontend are directed to the Zuul server, the Zuul server then requests for the required service from the pool of service IPs and makes the call. The response from the service is returned to the frontend.
 
-Due to the complexity of caching input/output streams (only consumable once), the team had not been able to implete the caching of image responses. The team had however, been successfully at caching JSON responses from the YOLO server. The JSON caching functionality can be tested using POSTMAN, and accessed through the `http://localhost:8762/yolo/api/uploadTest` endpoint. The first request is expected to take the usual amount of time, while subsequent requests should be significantly faster due to caching.
+Due to the complexity of caching input/output streams (only consumable once), the team had not been able to implement the caching of image responses. The team had however, been successfully at caching JSON responses from the YOLO server. The JSON caching functionality can be tested using POSTMAN, and accessed through the `http://localhost:8762/yolo/api/uploadTest` endpoint. The first request is expected to take the usual amount of time, while subsequent requests should be significantly faster due to caching.
 
 Endpoints
 ```
@@ -101,3 +104,11 @@ Access the frontend from `http://localhost`
 ## ⚙️ Architecture <a name="architecture"></a>
 
 <img src="./architecture.png">
+
+The diagram above represents the architecture of the system. 
+
+The green lines represent the request and responses from the VueJS service that serves the fronend.
+
+The purple lines represent the requests and responses from Zuul, Eureka, and it's services, used for service discovery.
+
+The black lines represent the requests and responses from the frontend to the yolo services.
