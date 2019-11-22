@@ -45,6 +45,21 @@ Eureka is a service registry used for discovering and locating services, and ess
 
 The original code had been converted into a REST endpoint through the use of the python Flask framework. The model options building, and loading of options into the model have been configured to run when the service boots. Any REST requests that require the model will be able to use it without having to initialize it again, this is important as the initialization of the model options and the model take up a significant amount of time (in relation to processing the REST request).
 
+Endpoints:
+```
+Accessed directly
+http://localhost:5000/api/upload
+http://localhost:5001/api/upload
+http://localhost:5002/api/upload
+
+http://localhost:5000/api/uploadTest
+http://localhost:5001/api/uploadTest
+http://localhost:5002/api/uploadTest
+
+Accessed through Zuul
+http://localhost:8762/yolo/api/upload
+http://localhost:8762/yolo/api/uploadTest
+```
 ## 🎈 Usage <a name="usage"></a>
 
 ### Prerequisites
