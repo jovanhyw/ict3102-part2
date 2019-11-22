@@ -21,6 +21,12 @@
 
 This project aims to create a system that provides object detection services. The system consists of a Single Page Application (SPA) frontend, and a backend that provides the object detection services. The project aims to create a system focused on scalability and has such been designed with reference to the microservice architecture. The microservice architecture breaks down a monolithic application into small invidividually callable services and each individual callable service will be run in it's own container. The idea behind it is to modularize all services so that instances of highly demanded services can be scaled up by spinning up additional containers.
 
+## Key Features
+1. Microservice Architecture - Each service is packaged into it's own container
+2. Service Discovery - Dynamically add or remove services from the architecture
+3. Load Balancing/ Dynamic Routing - Round Robin routing between available services
+4. Caching (Partial) - Caching of responses so not all responses have to reach the end service
+
 ### Frontend
 
 The system frontend is built in Vue.js, a javascript framework for building user interfaces and SPAs. The VueJS webserver will be packaged into its own container to allow multiple instances to be created if the demand requires.
