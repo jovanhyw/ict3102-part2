@@ -25,6 +25,8 @@ This project aims to create a system that provides object detection services. Th
 
 The system frontend is built in Vue.js, a javascript framework for building user interfaces and SPAs. The VueJS webserver will be packaged into its own container to allow multiple instances to be created if the demand requires.
 
+Due to the lack of time, the team had been unabled to implement predrawing of the image while waiting for the request to return with a response.
+
 ### Backend
 
 The system backend comprises of a Zuul server, Eureka server, and Flask server with each being packaged and deployed in it's own container.
@@ -32,6 +34,8 @@ The system backend comprises of a Zuul server, Eureka server, and Flask server w
 #### [Zuul](https://github.com/Netflix/zuul)
 
 Zuul is an edge service that provides dynamic routing and load balancing services. The system uses the base functionalities of Zuul mentioned above. Zuul and Spring have been selected as the platform as of choice due to their flexibility and ease of extensibility. Using Spring additional security layers and business logic layers can be built on top of Zuul to allow for more complex routing strategies. On boot, Zuul requests for a list of services and IPs that provided these services. Requests from the frontend are directed to the Zuul server, the Zuul server then requests for the required service from the pool of service IPs and makes the call. The response from the service is returned to the frontend.
+
+Due to the complexity of caching input/output streams (only consumable once), the team had not been able to implete the caching of image responses. The team had however, been successfully at caching JSON responses from the YOLO server. The JSON caching functionality can be tested using POSTMAN, and accessed through the `http://localhost:8762/yolo/api/uploadTest` endpoint. The first request is expected to take the usual amount of time, while subsequent requests should be significantly faster due to caching.
 
 #### [Eureka](https://github.com/Netflix/eureka)
 
