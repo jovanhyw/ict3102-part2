@@ -6,6 +6,7 @@
 
 - [About](#about)
 - [Usage](#usage)
+- [Architecture](#architecture)
 
 ## ✍️ Prepared By
 
@@ -22,7 +23,7 @@ This project aims to create a system that provides object detection services. Th
 
 ### Frontend
 
-The system frontend is built in Vue.js, a javascript framework for building user interfaces and SPAs. The VueJS webserver will be packaged into its own container to allow multiple instances to be created if the demand requires. 
+The system frontend is built in Vue.js, a javascript framework for building user interfaces and SPAs. The VueJS webserver will be packaged into its own container to allow multiple instances to be created if the demand requires.
 
 ### Backend
 
@@ -30,7 +31,7 @@ The system backend comprises of a Zuul server, Eureka server, and Flask server w
 
 #### [Zuul](https://github.com/Netflix/zuul)
 
-Zuul is an edge service that provides dynamic routing and load balancing services. The system uses the base functionalities of Zuul mentioned above. Zuul and Spring have been selected as the platform as of choice due to their flexibility and ease of extensibility. Using Spring additional security layers and business logic layers can be built on top of Zuul to allow for more complex routing strategies. On boot, Zuul requests for a list of services and IPs that provided these services. Requests from the frontend are directed to the Zuul server, the Zuul server then requests for the required service from the pool of service IPs and makes the call. The response  from the service is returned to the frontend.
+Zuul is an edge service that provides dynamic routing and load balancing services. The system uses the base functionalities of Zuul mentioned above. Zuul and Spring have been selected as the platform as of choice due to their flexibility and ease of extensibility. Using Spring additional security layers and business logic layers can be built on top of Zuul to allow for more complex routing strategies. On boot, Zuul requests for a list of services and IPs that provided these services. Requests from the frontend are directed to the Zuul server, the Zuul server then requests for the required service from the pool of service IPs and makes the call. The response from the service is returned to the frontend.
 
 #### [Eureka](https://github.com/Netflix/eureka)
 
@@ -57,3 +58,7 @@ docker-compose up --scale yolo=3
 ```
 
 Access the frontend from `http://localhost`
+
+## ⚙️ Architecture <a name="architecture"></a>
+
+<img src="./architecture.png">
