@@ -18,7 +18,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-This project aims to create a system that provides object detection services. The system consists of a Single Page Application (SPA) frontend, and a backend that provides the object detection services.
+This project aims to create a system that provides object detection services. The system consists of a Single Page Application (SPA) frontend, and a backend that provides the object detection services. The project aims to create a system focused on scalability and has such been designed with reference to the microservice architecture. The microservice architecture breaks down a monolithic application into small invidividually callable services. The idea behind it is to separate all services so that instances of highly demanded services can be scaled up appropriately.
 
 ### Frontend
 
