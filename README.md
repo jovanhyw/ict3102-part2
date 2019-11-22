@@ -37,10 +37,24 @@ Zuul is an edge service that provides dynamic routing and load balancing service
 
 Due to the complexity of caching input/output streams (only consumable once), the team had not been able to implete the caching of image responses. The team had however, been successfully at caching JSON responses from the YOLO server. The JSON caching functionality can be tested using POSTMAN, and accessed through the `http://localhost:8762/yolo/api/uploadTest` endpoint. The first request is expected to take the usual amount of time, while subsequent requests should be significantly faster due to caching.
 
+Endpoints
+```
+View all routes to service mapping
+http://localhost:8672/actuator/routes
+```
+
 #### [Eureka](https://github.com/Netflix/eureka)
 
 Eureka is a service registry used for discovering and locating services, and essentially acts like a phone book for services. Eureka offers multiple REST endpoints for clients to register, and de-register themselves from the registry. Clients are required to send heartbeats to the Eureka server to renew their leases, faulure to do so before the lease expiry will result in them being removed from the registry. This ensures that services listed on Eureka are actually available. Multiple instances of Eureka servers can exist in the same archicture, each being in charge of discovering a specific service. Eureka servers will then be able to exchange their registries with each other, updating each others registry. This sharing of registry information between Eureka servers acts as a failover incase one registry goes down. However, as a proof of concept for this project, the team's Eureka server has been configured to run in standalone mode (1 instance).
 
+Endpoints
+```
+View all registered services
+http://localhost:8761
+
+Get Information on all registered services
+http://localhost:8761/eureka/apps/
+```
 #### Flask
 
 The original code had been converted into a REST endpoint through the use of the python Flask framework. The model options building, and loading of options into the model have been configured to run when the service boots. Any REST requests that require the model will be able to use it without having to initialize it again, this is important as the initialization of the model options and the model take up a significant amount of time (in relation to processing the REST request).
