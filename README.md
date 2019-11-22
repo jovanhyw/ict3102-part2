@@ -38,7 +38,7 @@ Eureka is a service registry used for discovering and locating services, and ess
 
 #### Flask
 
-The original code had been converted into a REST endpoint through the use of
+The original code had been converted into a REST endpoint through the use of the python Flask framework. The model options building, and loading of options into the model have been configured to run when the service boots. Any REST requests that require the model will be able to use it without having to initialize it again, this is important as the initialization of the model options and the model take up a significant amount of time (in relation to processing the REST request).
 
 ## 🎈 Usage <a name="usage"></a>
 
@@ -46,7 +46,7 @@ The original code had been converted into a REST endpoint through the use of
 
 You will require Docker and Docker Compose to be installed on your local machine to run this project.
 
-As we will be running 3 `yolo` containers, it is recommended to allocated at least **8GB of RAM** to your Docker Engine resources.
+As we will be running 3 `yolo` containers, it is recommended that you allocated at least **8GB of RAM** to your Docker Engine resources.
 
 ### Running the project
 
