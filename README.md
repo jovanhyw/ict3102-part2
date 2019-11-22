@@ -24,19 +24,19 @@
 
 This project aims to create a system that provides object detection services. The system consists of a Single Page Application (SPA) frontend, and a backend that provides the object detection services. The project aims to create a system focused on scalability and has such been designed with reference to the microservice architecture. The microservice architecture breaks down a monolithic application into small invidividually callable services and each individual callable service will be run in it's own container. The idea behind it is to modularize all services so that instances of highly demanded services can be scaled up by spinning up additional containers.
 
-## Key Features
+## 🔑 Key Features
 1. Microservice Architecture - Each service is packaged into it's own container
 2. Service Discovery - Dynamically add or remove services from the architecture
 3. Load Balancing/ Dynamic Routing - Round Robin routing between available services
 4. Caching (Partial) - Caching of responses so not all responses have to reach the end service
 
-### Frontend
+### 🌐 Frontend
 
 The system frontend is built in Vue.js, a javascript framework for building user interfaces and SPAs. The VueJS webserver will be packaged into its own container to allow multiple instances to be created if the demand requires.
 
 Due to the lack of time, the team had been unabled to implement predrawing of the image while waiting for the request to return with a response.
 
-### Backend
+### 👨🏻‍💻 Backend
 
 The system backend comprises of a Zuul server, Eureka server, and Flask server with each being packaged and deployed in it's own container.
 
@@ -52,7 +52,7 @@ View all routes to service mapping
 http://localhost:8672/actuator/routes
 ```
 
-#### [Eureka](https://github.com/Netflix/eureka)
+#### 💡 [Eureka](https://github.com/Netflix/eureka)
 
 Eureka is a service registry used for discovering and locating services, and essentially acts like a phone book for services. Eureka offers multiple REST endpoints for clients to register, and de-register themselves from the registry. Clients are required to send heartbeats to the Eureka server to renew their leases, faulure to do so before the lease expiry will result in them being removed from the registry. This ensures that services listed on Eureka are actually available. Multiple instances of Eureka servers can exist in the same archicture, each being in charge of discovering a specific service. Eureka servers will then be able to exchange their registries with each other, updating each others registry. This sharing of registry information between Eureka servers acts as a failover incase one registry goes down. However, as a proof of concept for this project, the team's Eureka server has been configured to run in standalone mode (1 instance).
 
@@ -64,7 +64,7 @@ http://localhost:8761
 Get Information on all registered services
 http://localhost:8761/eureka/apps/
 ```
-#### Flask
+#### 🧪 Flask
 
 The original code had been converted into a REST endpoint through the use of the python Flask framework. The model options building, and loading of options into the model have been configured to run when the service boots. Any REST requests that require the model will be able to use it without having to initialize it again, this is important as the initialization of the model options and the model take up a significant amount of time (in relation to processing the REST request).
 
@@ -85,21 +85,36 @@ http://localhost:8762/yolo/api/uploadTest
 ```
 ## 🎈 Usage <a name="usage"></a>
 
-### Prerequisites
+### 📜 Prerequisites
 
 You will require Docker and Docker Compose to be installed on your local machine to run this project.
 
 As we will be running 3 `yolo` containers, it is recommended that you allocated at least **8GB of RAM** to your Docker Engine resources.
 
-### Running the project
+### 🏃🏻 Running the project
 
-Running the command below will spin up the Docker containers that will run the application code.
+#### 💿 1. Clone Repository
+Clone the this repository using the following command
+```
+$ git clone https://github.com/jovanhyw/ict3102-part2
+```
+#### 📦 2. Build containers
+Navigate to the root folder of the project and ender the following command
+```
+docker-compose build
+```
+The images required for each container will be downloaded, and the each container will be build.
+
+#### 🐳 3. Docker-compose
+Navigate to the root folder of the project and enter the following command
 
 ```bash
 docker-compose up --scale yolo=3
 ```
 
-Access the frontend from `http://localhost`
+The integer at the end of `yolo=3` determines the **number of yolo service containers created**. Based on the team's testing, each additional yolo container requires an **extra 1.5GB of RAM**.
+
+All required containers should automatically be started.
 
 ## ⚙️ Architecture <a name="architecture"></a>
 
