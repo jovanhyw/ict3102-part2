@@ -30,7 +30,7 @@ services:
       - run
       - --host=0.0.0.0
     environment:
-      FLASK_DEBUG: 1
+      FLASK_DEBUG: 0
       FLASK_APP: /app.py
     ports:
       - '5000-5002:5000'
@@ -43,3 +43,5 @@ services:
       - 80:80
     depends_on:
       - yolo
+    logging:
+      driver: none
